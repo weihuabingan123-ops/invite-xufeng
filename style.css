@@ -1,0 +1,335 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFE4E8;
+    font-family: 'Nunito', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-image:
+        radial-gradient(circle at 15% 85%, #ffb3c1 0%, transparent 40%),
+        radial-gradient(circle at 85% 15%, #ff8fa3 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, #fff0f3 0%, transparent 60%);
+}
+
+/* 飘浮表情背景 */
+.hearts-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hearts-bg::before,
+.hearts-bg::after {
+    content: '💪 🦵 🏋️ 💪 🦵';
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.15;
+    animation: floatHearts 12s linear infinite;
+    white-space: nowrap;
+    top: 100%;
+    left: 10%;
+}
+
+.hearts-bg::after {
+    animation-delay: 6s;
+    left: 60%;
+    content: '🏋️ 💪 🦵 💪 🏋️';
+}
+
+@keyframes floatHearts {
+    from { transform: translateY(0); opacity: 0.15; }
+    to { transform: translateY(-110vh); opacity: 0; }
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #d63384;
+    font-weight: 900;
+    margin-bottom: 12px;
+    text-shadow: 2px 2px 0px rgba(214, 51, 132, 0.2);
+    animation: wiggle 2s ease-in-out infinite;
+    line-height: 1.4;
+    transition: opacity 0.2s ease;
+    min-height: 2.8em;
+}
+
+.subtitle {
+    color: #b3568c;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-1deg); }
+    50% { transform: rotate(1deg); }
+}
+
+.gif-container {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+}
+
+#cat-gif {
+    width: 190px;
+    height: 190px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+    transition: opacity 0.3s ease;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 26px;
+    flex-wrap: wrap;
+}
+
+#yes-btn {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    font-family: inherit;
+    padding: 18px 45px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, font-size 0.25s, padding 0.25s;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.45);
+    letter-spacing: 1px;
+}
+
+#yes-btn:hover {
+    transform: scale(1.06) translateY(-2px);
+    box-shadow: 0 10px 28px rgba(76, 175, 80, 0.55);
+}
+
+#yes-btn:active { transform: scale(0.98); }
+
+#no-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    padding: 12px 28px;
+    cursor: pointer;
+    transition: background 0.2s, left 0.22s ease, top 0.22s ease, font-size 0.2s;
+    box-shadow: 0 4px 14px rgba(231, 76, 60, 0.4);
+}
+
+#no-btn:hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+}
+
+#tease-toast {
+    margin-top: 14px;
+    font-size: 1.05rem;
+    color: #d63384;
+    font-weight: 700;
+    font-style: italic;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    min-height: 1.6rem;
+}
+
+#tease-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 音乐开关 */
+#music-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    border: none;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s;
+    z-index: 100;
+}
+
+#music-toggle:hover { transform: scale(1.1); }
+
+/* ===== 强制报名覆盖层 ===== */
+#force-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 6, 12, 0.86);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#force-overlay.show { display: flex; }
+
+.force-box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 34px 30px;
+    text-align: center;
+    max-width: 86vw;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.force-title {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #c0392b;
+    margin-bottom: 10px;
+}
+
+.force-sub {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 18px;
+}
+
+.progress-track {
+    width: 260px;
+    max-width: 70vw;
+    height: 14px;
+    background: #f0d5dd;
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    border-radius: 999px;
+    transition: width 2s ease;
+}
+
+/* 按钮雨 */
+.rain-btn {
+    position: fixed;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    font-family: inherit;
+    padding: 12px 22px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(76, 175, 80, 0.5);
+    z-index: 210;
+    animation: rainPop 0.35s ease both;
+}
+
+@keyframes rainPop {
+    from { transform: scale(0) rotate(-15deg); }
+    to { transform: scale(1) rotate(0); }
+}
+
+/* ===== 结局页 ===== */
+.yes-container h1.yes-title {
+    font-size: 2.4rem;
+    animation: bounceTitle 0.6s ease infinite alternate;
+}
+
+@keyframes bounceTitle {
+    from { transform: translateY(0) rotate(-1deg); }
+    to { transform: translateY(-12px) rotate(1deg); }
+}
+
+.yes-message {
+    font-size: 1.25rem;
+    color: #e91e8c;
+    font-weight: 700;
+    margin-top: 18px;
+    animation: fadeIn 1s ease 0.4s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.yes-container #cat-gif {
+    width: 230px;
+    height: 230px;
+}
+
+/* 承诺书卡片 */
+.cert-card {
+    background: #fffdf5;
+    border: 2px dashed #e5a2bc;
+    border-radius: 16px;
+    max-width: 420px;
+    margin: 22px auto 0;
+    padding: 22px 26px;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(214, 51, 132, 0.15);
+    animation: fadeIn 1s ease 0.8s both;
+}
+
+.cert-card h2 {
+    text-align: center;
+    color: #c2185b;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+.cert-card p {
+    color: #6d3a50;
+    font-weight: 700;
+    font-size: 0.98rem;
+    line-height: 1.8;
+}
+
+.cert-stamp {
+    text-align: right;
+    margin-top: 10px;
+    color: #c2185b;
+    font-weight: 900;
+}
+
+.cert-note {
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: #a5708b;
+    text-align: center;
+    font-style: italic;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>收到收到收到 ✅</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="hearts-bg"></div>
+
+    <div class="container yes-container">
+        <h1 class="yes-title">收到收到收到!✅✅✅<br>就知道徐峰先生最爽快!🎉</h1>
+
+        <div class="gif-container">
+            <img id="cat-gif" src="https://media.tenor.com/eNHbizSfVb0AAAAj/lovemode-cute.gif" alt="celebrating">
+        </div>
+
+        <div class="cert-card">
+            <h2>📋 小璐的接待承诺(已生效)</h2>
+            <p>
+                ✅ 时间:2026年8月25日(周二)下午 15:00<br>
+                ✅ 提前把地址定位发您,到楼下小璐来接 📍<br>
+                ✅ 茶水咖啡备好,您人到就行 ☕<br>
+                ✅ 只聊重点不绕弯,绝不耽误您宝贵时间 ⏱️<br>
+                ✅ 聊完觉得不值,小璐请您喝咖啡赔罪
+            </p>
+            <p class="cert-stamp" id="cert-time">确认时间:—</p>
+            <p class="cert-note">*本页面已自动截图存证 📸 徐峰先生可是亲口答应小璐了哦~</p>
+        </div>
+
+        <p class="yes-message">8月25日下午 15:00,不见不散!小璐恭候大驾 🤝✨</p>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="music/bgm.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-toggle" onclick="toggleMusic()" title="音乐开关">🔊</button>
+
+    <script src="yes-script.js"></script>
+</body>
+</html>
