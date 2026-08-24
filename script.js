@@ -15,7 +15,7 @@ const persuasions = [
         gif: "https://media.tenor.com/f_rkpJbH1s8AAAAj/somsom1012.gif"
     },
     {
-        title: "这次聊的事,对您只有好处没有坑,<br>小璐拿这个月奖金担保 🤝✨",
+        title: "这次聊的事,对您只有好处没有坑,<br>小璐拿芝麻信用做担保 🤝✨",
         no: "说啥都没空",
         gif: "https://media.tenor.com/OGY9zdREsVAAAAAj/somsom1012.gif"
     },
